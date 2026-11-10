@@ -36,8 +36,9 @@ made for them.
 
 ## The topic
 
-`topics/<slug>.md` holds the principles drawn from cases of one kind. Before writing a case's
-place, run `decisions.sh index` and read the topic that fits. Start a new topic only when no
+`topics/<slug>.md` holds the principles drawn from cases of one kind. Before writing anything,
+run `decisions.sh index` and read the topic that fits: whether a case is written at all depends
+on what the topic already holds. Start a new topic only when no
 description covers the question.
 
 ```markdown
@@ -62,10 +63,13 @@ description: <one line: which questions this topic answers — this is all the i
 Every case is named in at least one topic as `[[file name without .md]]`; `decisions.sh check`
 verifies this.
 
-## Filing a new case
+## Filing a new decision
 
-1. The case repeats a principle → add its name to "Случаи"; sharpen the wording or the
-   conditions if the case adds something. One more case is not one more principle.
+0. The decision exactly repeats a principle — the same choice, the same reason, a project of
+   the same kind as the principle's conditions name → write nothing. No case, no edit, no save.
+1. The decision confirms a principle and adds to it — a new kind of project, a reason the
+   principle lacked, a sharper condition → write the case, add its name to "Случаи" and update
+   the wording or the conditions. One more case is not one more principle.
 2. The case goes against a principle and the difference in project or situation explains it →
    write the "Граница" line: where each answer holds and why.
 3. The case goes against a principle and nothing explains it → add both to "Нерешённые

@@ -84,7 +84,8 @@ topics/   principles drawn from the cases, with boundaries: where you decided ot
 
 - Cases are the record. Each has a unique name, so two machines never write the same file, and
   cases are never deleted.
-- Topics are merged, not appended. A case that repeats a principle joins it. A case that goes
+- Topics are merged, not appended. An answer that exactly repeats a principle is not recorded
+  at all; one that adds to it joins it. A case that goes
   against one becomes a boundary if the situations differ, or one short question to you if
   nothing explains the difference.
 - There is no database and no service. A subagent reads the list of topics and the ones that

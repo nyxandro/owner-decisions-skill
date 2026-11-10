@@ -8,6 +8,14 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [0.2.0] - 2026-11-10
+
+### Changed
+
+- An answer that exactly repeats a principle — the same choice, the same reason, a project of
+  the same kind — is no longer recorded. The base grows only from what is new, so repeated
+  questions about money or irreversible actions, which are always asked, stop adding files.
+
 ## [0.1.0] - 2026-11-10
 
 The first version. Forks are checked against the base before they reach the owner, answers are

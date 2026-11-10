@@ -13,7 +13,7 @@ description: >
   documentation answer, and not for storing project state or task notes. The owner may phrase
   this in another language; match on meaning.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Owner's decisions
@@ -102,6 +102,10 @@ Record a decision when all hold:
   unconfirmed recommendation are not decisions;
 - it shows how they decide, so it can apply again. A name, a date, a number or a text that
   matters to this feature only is not a case;
+- it says something the base does not hold yet. An answer that exactly repeats a principle —
+  the same choice, for the same reason, in a project of the same kind — is not recorded at
+  all: no case, no change to the topic. A new kind of project, a new reason, a reason where the
+  principle had none, or a sharper condition is something new;
 - it holds no secrets, credentials or personal data of third parties.
 
 A reversal of a settled fork is the most valuable record: it shows where a principle ends.
@@ -115,8 +119,10 @@ boundary, and run `decisions.sh save`. Several answers from one message go in on
 
 The base is worth what its principles are worth, so it is merged, not appended.
 
-- A new case that repeats a principle adds its name to that principle and, if it sharpens the
-  wording, changes the wording. It does not add a second principle.
+- An answer that exactly repeats a principle leaves no trace: the base grows only from what is
+  new. A case that confirms a principle while adding to it — another kind of project, a
+  reason, a sharper condition — adds its name to that principle and changes the wording. It
+  does not add a second principle.
 - A new case that goes against a principle is a boundary, not an error. If the difference
   between the projects or situations explains it, write the boundary into the principle: where
   it holds, where the other answer holds, and why. If nothing explains it, move it to the
