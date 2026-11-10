@@ -8,6 +8,9 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+- **2026-11-10.** The skill installs as a Claude Code plugin from the
+  [nyxandro/skills](https://github.com/nyxandro/skills) catalog.
+
 ## [0.4.0] - 2026-11-10
 
 A second reading of the skill by its author and by a reader who had never seen it.

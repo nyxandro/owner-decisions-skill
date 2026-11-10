@@ -7,6 +7,7 @@
 [![Release](https://img.shields.io/github/v/release/nyxandro/owner-decisions-skill)](https://github.com/nyxandro/owner-decisions-skill/releases)
 [![License](https://img.shields.io/github/license/nyxandro/owner-decisions-skill)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-SKILL.md-6f42c1)](https://agentskills.io/specification)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](#установка)
 
 [English](README.md) · **Русский**
 
@@ -29,8 +30,11 @@ md-файлов. Прежде чем попросить вас выбрать м
 
 | Агент | Команда |
 |---|---|
+| Claude Code, плагином | `/plugin install owner-decisions --marketplace nyxandro/skills` |
 | Claude Code, Codex, OpenCode, Cursor и другие | `npx skills add nyxandro/owner-decisions-skill -g` |
 | Любой агент, вручную | Скачайте [последний архив `.skill`](https://github.com/nyxandro/owner-decisions-skill/releases/latest/download/owner-decisions.skill) и распакуйте в папку скиллов агента |
+
+Выберите один способ. Если поставить двумя, Claude Code загрузит скилл дважды.
 
 Больше ничего настраивать не нужно. При первом запуске скилл сам создаёт базу в
 `~/.agents/decisions` и одной строкой сообщает, где она лежит и синхронизируется ли:

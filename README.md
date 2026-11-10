@@ -7,6 +7,7 @@
 [![Release](https://img.shields.io/github/v/release/nyxandro/owner-decisions-skill)](https://github.com/nyxandro/owner-decisions-skill/releases)
 [![License](https://img.shields.io/github/license/nyxandro/owner-decisions-skill)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-SKILL.md-6f42c1)](https://agentskills.io/specification)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](#install)
 
 **English** · [Русский](README.ru.md)
 
@@ -30,8 +31,11 @@ This skill keeps them. The more you answer, the less you are asked.
 
 | Agent | Command |
 |---|---|
+| Claude Code, as a plugin | `/plugin install owner-decisions --marketplace nyxandro/skills` |
 | Claude Code, Codex, OpenCode, Cursor and others | `npx skills add nyxandro/owner-decisions-skill -g` |
 | Any agent, by hand | Download the [latest `.skill` archive](https://github.com/nyxandro/owner-decisions-skill/releases/latest/download/owner-decisions.skill) and unpack it into the agent's skills folder |
+
+Pick one. If you install it two ways, Claude Code loads the skill twice.
 
 There is nothing else to set up. The first time the skill runs it creates your base in
 `~/.agents/decisions` and tells you in one line where it is and whether it syncs:
