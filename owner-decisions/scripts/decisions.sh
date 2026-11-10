@@ -79,7 +79,7 @@ current_branch() {
 # A refused login is a broken setup the owner must hear about; a missing network is not.
 report_remote_failure() {
   local what=$1 err=$2
-  if echo "$err" | grep -qiE 'authentication|permission denied|could not read username|access denied|403|repository not found'; then
+  if echo "$err" | grep -qiE 'authentication|permission denied|could not read (username|password)|unable to get password|terminal prompts disabled|invalid credentials|access denied|40[13]|repository not found'; then
     echo "NOTICE decisions base is not syncing: access to its repository was refused ($(echo "$err" | head -1))"
   else
     echo "$what ($(echo "$err" | head -1))"

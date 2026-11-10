@@ -13,7 +13,7 @@ description: >
   documentation answer, and not for storing project state or task notes. The owner may phrase
   this in another language; match on meaning.
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Owner's decisions

@@ -8,6 +8,14 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [0.3.1] - 2026-11-10
+
+### Fixed
+
+- A repository that refuses access because the machine has no saved login was taken for a
+  missing network and passed in silence. It is now reported to the owner in one line. Found by
+  running the first-use paths against a real GitHub repository.
+
 ## [0.3.0] - 2026-11-10
 
 ### Changed
