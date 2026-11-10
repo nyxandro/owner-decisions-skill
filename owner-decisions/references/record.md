@@ -79,4 +79,6 @@ verifies this.
    unknown.
 
 Then run `decisions.sh save --message "<project>: <what was decided>"`. If it prints `UNFILED`
-or `DANGLING`, fix the filing and save again.
+or `DANGLING`, fix the filing and save again. If it prints `TOPIC_OVERWRITTEN <file>`, another
+machine changed that topic at the same time and its copy was kept: reread the topic, apply your
+change to it again and save again.

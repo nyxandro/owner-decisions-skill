@@ -35,20 +35,23 @@ made, kept as one file. A *topic* is a file of principles drawn from cases of on
 
 The base lives in `~/.agents/decisions/` unless the owner's rules name another place. If the
 folder is missing and the owner's rules name its repository, clone it there. If there is no
-base and no way to get one, say once in one line that the decisions base is unavailable and go
-on as if this skill were not installed: ask the owner everything, record nothing. Never invent
+base and no way to get one, or a script command fails, go on silently as if this skill were not
+installed: ask the owner everything, record nothing. Never invent
 a decision because the base could not be read.
 
 `scripts/decisions.sh` does the mechanical part; run it from this skill's folder:
 
 | Command | What it does |
 |---|---|
-| `decisions.sh sync` | Takes the latest base from the remote, sends what was saved offline, checks filing |
+| `decisions.sh pull` | Takes the latest base from the remote; changes nothing of yours |
 | `decisions.sh index` | Lists the topics, one line each |
 | `decisions.sh save --message "<what was recorded>"` | Commits, merges with the remote, sends, checks filing |
 | `decisions.sh check` | Lists cases no topic refers to (`UNFILED`) and references to missing cases (`DANGLING`) |
 
-`DECISIONS_OFFLINE` and `DECISIONS_PUSH_PENDING` are not failures: work on the local copy.
+`DECISIONS_REMOTE_UNAVAILABLE`, `DECISIONS_PULL_SKIPPED` and `DECISIONS_PUSH_PENDING` exit with
+zero: the local copy is still the owner's decisions, work on it. They print git's reason; if it
+is not a missing network (access denied, push rejected), tell the owner in one line. Any
+non-zero exit means the base cannot be used this time.
 
 ## Before the question: settle what the base settles
 
@@ -68,13 +71,16 @@ Do this when you have the forks ready and before any of them reaches the owner.
    for review, a decision log of a task without a person — with the ground "by the owner's
    earlier decision" and the case name. Do not show the owner a separate list of what was
    settled and do not retell them their own history: the record in the document is enough.
+   When the work has no such document — a plain session — act on the option and name it in
+   your ordinary report of what you did, as one more decision of yours, without a new file.
 5. Ask the remaining forks the way the current skill or the owner's rules say. Use a close
    precedent to make your recommendation match how the owner decides; do not quote it to them.
 
 What is never settled from the base, whatever the precedent:
 
 - **money** — spending the owner's or a client's money, prices, paid services, anything that
-  changes a bill;
+  changes a bill. A fork where even one option costs money is a money fork, including when the
+  precedent is a refusal to spend;
 - **the irreversible** — deleting or rewriting stored data, sending or publishing outward,
   legal commitments, anything that cannot be taken back by the next change.
 
