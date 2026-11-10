@@ -62,7 +62,8 @@ base first and your answers are recorded in it.
    work already records decisions made for you, such as the "agent decisions" section of a
    specification. You get no separate list and no retelling of your own history.
    A decision of its own that the base covers is taken your way; one the base is silent on
-   stays the agent's. Consulting the base never adds questions for you.
+   stays the agent's. Consulting the base does not add questions for you, with one exception: a
+   decision the agent took for its own that turns out to be about money or the irreversible.
 4. You answer the rest. In the same turn the agent writes each answer as a case, files it under
    a topic and pushes the base.
 

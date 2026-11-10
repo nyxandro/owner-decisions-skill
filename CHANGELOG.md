@@ -8,6 +8,14 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [0.5.1] - 2026-11-10
+
+### Fixed
+
+- A call the agent took for its own that turns out to be about money or the irreversible goes
+  to the owner. The text said such a call "stays the agent's", which would have let a planned
+  rewrite of stored data through. Found on a trial consultation of forks and calls together.
+
 ## [0.5.0] - 2026-11-10
 
 Checked against a workflow that sorts decisions into the agent's own and the owner's, asks

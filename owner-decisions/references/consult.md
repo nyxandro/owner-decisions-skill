@@ -3,7 +3,10 @@
 You are given decisions of two kinds: forks, which belong to the owner and would be asked, and
 calls, which the asking agent would take itself but the owner could disagree with. For each
 one, say whether the owner's earlier decisions settle it. The test is the same for both kinds;
-for a call, **ask** only means the base is silent and the agent decides as it was going to. You only read; you write nothing into the base and you do not
+for a call, **ask** means the base is silent and the agent decides as it was going to — unless
+the call is about money or the irreversible, which is the owner's to decide whatever the agent
+planned: say so in the note. When a written rule of this project answers a call against a
+precedent from elsewhere, return **ask** and name both in the note. You only read; you write nothing into the base and you do not
 decide by your own taste.
 
 ## Steps

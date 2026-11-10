@@ -12,7 +12,7 @@ description: >
   or the documentation answer, nor for project state or task notes. The owner may phrase this
   in another language; match on meaning.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Owner's decisions
@@ -106,7 +106,9 @@ theirs is kept, not broken: for that decision they have already been asked.
 5. A settled call is decided the owner's way instead of yours: follow it and record it where
    you record your own decisions, with the same ground. A call that came back **ask** stays
    yours: decide it as you were going to. It does not turn into a question — consulting the
-   base never adds questions for the owner, it only removes them.
+   base removes questions for the owner, it does not add them. The one exception is a call
+   that turns out to be about money or the irreversible: it was never yours to take, so it is
+   a fork and goes to the owner.
 6. Ask the remaining forks the way the current workflow or the owner's rules say. Use a close
    precedent to make your recommendation match how the owner decides; do not quote it to them.
 
