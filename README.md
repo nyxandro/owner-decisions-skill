@@ -53,13 +53,16 @@ base first and your answers are recorded in it.
 
 ## How it works
 
-1. An agent has prepared questions for you, in any skill or a plain session.
-2. Before sending them, it hands them to a subagent. The subagent pulls the base, reads the
+1. An agent has listed the decisions that are yours to make, in any skill or a plain session,
+   along with the ones it would take itself but you could disagree with.
+2. Before asking and before building on a guess, it hands them to a subagent. The subagent pulls the base, reads the
    topics that fit and returns a verdict for each question: settled, with the decision it rests
    on, or ask.
 3. A settled question is no longer asked. The agent takes the option and records it where the
    work already records decisions made for you, such as the "agent decisions" section of a
    specification. You get no separate list and no retelling of your own history.
+   A decision of its own that the base covers is taken your way; one the base is silent on
+   stays the agent's. Consulting the base never adds questions for you.
 4. You answer the rest. In the same turn the agent writes each answer as a case, files it under
    a topic and pushes the base.
 

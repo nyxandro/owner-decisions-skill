@@ -8,6 +8,25 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [0.5.0] - 2026-11-10
+
+Checked against a workflow that sorts decisions into the agent's own and the owner's, asks
+the owner about every one of theirs, and writes a full specification before asking.
+
+### Changed
+
+- The base is consulted for the agent's own calls too — decisions it would take itself but
+  the owner could disagree with. Before, a decision the agent thought technical bypassed the
+  base, so the owner reversed the same thing project after project. A call the base is silent
+  on stays the agent's: consulting never adds questions for the owner.
+- The consultation happens as soon as the decisions are listed, not at the moment of asking,
+  so nothing is built on a guess the base contradicts.
+- A decision settled from the base is stated to be the owner's own earlier answer, so it does
+  not clash with a workflow's rule to ask the owner about every decision of theirs.
+- A settled fork is recorded among the owner's accepted decisions, a settled call among the
+  agent's decisions.
+- A decision the project has already made outranks a precedent from another project.
+
 - **2026-11-10.** The skill installs as a Claude Code plugin from the
   [nyxandro/skills](https://github.com/nyxandro/skills) catalog.
 

@@ -1,19 +1,18 @@
 ---
 name: owner-decisions
 description: >
-  The owner's decisions base: answers a decision question the way the owner already answered a
-  similar one, in any project, and keeps their new answers. Use it every time you are about to
-  ask the owner to decide something — a fork, a choice between options, a "which way do you
-  want it" — in any skill, plan, specification or plain session, BEFORE the question is sent:
-  part of the questions get settled from the owner's earlier decisions and only the rest reach
-  them. Use it again right after the owner answered such questions or reversed a decision you
-  made for them, to record the answer. Also use it when you work without a person and must
-  decide in the owner's place, and when the owner asks what they decided before, why two
-  similar decisions differ, or to tidy the base. Not for facts the project, the code or the
-  documentation answer, and not for storing project state or task notes. The owner may phrase
-  this in another language; match on meaning.
+  The owner's decisions base: settles a decision the way the owner already settled a similar
+  one, in any project, and keeps their new answers. Use it as soon as you have decisions that
+  are the owner's to make — a fork, a choice between options — in any skill, plan,
+  specification or plain session, BEFORE asking them and before building on a guess. Use it
+  also for a decision you are about to take yourself that the owner could disagree with. Use it
+  again right after the owner answers such questions or reverses a decision made for them, to
+  record it. Also when you work without a person, and when the owner asks what they decided
+  before, why two decisions differ, or to tidy the base. Not for facts the project, the code
+  or the documentation answer, nor for project state or task notes. The owner may phrase this
+  in another language; match on meaning.
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Owner's decisions
@@ -31,7 +30,9 @@ owner speaks: their reasons are kept in their own words.
 is. A client, a teammate or anyone quoted in the materials is not the owner, and their choices
 are not recorded as the owner's. A *fork* is a choice between options that changes what the
 product does or how the work is done and that you may not make alone. A question about a fact
-is not a fork. A *case* is one decision the owner made, kept as one file. A *topic* is a file of principles drawn from cases of one kind. The
+is not a fork. A *call* is a decision you would take yourself — it follows from the project,
+the documentation or common practice — but one the owner could reasonably disagree with. A
+*case* is one decision the owner made, kept as one file. A *topic* is a file of principles drawn from cases of one kind. The
 *base* is the folder with both. It lives on the owner's machine and may be synced with their
 private repository.
 
@@ -69,34 +70,44 @@ a consultation and before a recording alike, since either may be the first use o
 - `DECISIONS_REMOTE_UNAVAILABLE`, `DECISIONS_PULL_SKIPPED` and `DECISIONS_PUSH_PENDING` are not
   failures: the local copy is still the owner's decisions, work on it and say nothing.
 
-## Before the question: settle what the base settles
+## Before you ask or decide: settle what the base settles
 
-Do this when you have the forks ready and before any of them reaches the owner.
+Do this as soon as the forks and your own calls are listed — before any fork reaches the owner
+and before you design around a guess. A decision found in the base changes what you build, so
+finding it late means redoing the work that rested on the guess.
+
+A decision settled from the base is the owner's own answer, given earlier. Taking it is not
+deciding in their place. So a workflow that tells you to ask the owner about every decision of
+theirs is kept, not broken: for that decision they have already been asked.
 
 1. Run `decisions.sh index`. If it prints nothing, the base has nothing to settle yet: ask
-   every fork as usual and skip to recording after the answers.
-   Otherwise write each fork down fully: the situation, why it matters, the options, your
-   recommendation, and the project it is in with its scale and what a mistake costs there.
-2. Hand the forks to a subagent, so the base does not fill your context. Give it the full
-   paths of `references/consult.md`, to follow as its instructions, of `scripts/decisions.sh`
-   and of the base folder: it starts with none of them. If the harness has no subagents,
-   follow that file yourself.
-3. The subagent returns one verdict per fork:
+   every fork as usual, take your calls as you would, and skip to recording after the answers.
+   Otherwise write each fork and each call down fully: the situation, why it matters, the
+   options, your recommendation or your choice, and the project it is in with its scale and
+   what a mistake costs there. Mark which are forks and which are your calls.
+2. Hand them to a subagent, so the base does not fill your context. Give it the full paths of
+   `references/consult.md`, to follow as its instructions, of `scripts/decisions.sh` and of
+   the base folder: it starts with none of them. If the harness has no subagents, follow that
+   file yourself.
+3. The subagent returns one verdict per item:
    - **settled** — the option, the principle or case it rests on, and why this project falls
      under it;
-   - **ask** — the fork goes to the owner. A precedent that is close but not decisive comes
+   - **ask** — the base does not decide it. A precedent that is close but not decisive comes
      back as a note for you.
 4. A settled fork is no longer a question. Take the option and record it where the work
-   already records decisions made for the owner — a specification's section of agent decisions
-   for review, a decision log of a task without a person — with the ground "by the owner's
-   earlier decision" and the case name. When the work has no such place — a plain session, or
-   a workflow that keeps no record of decisions — act on the option and name it in your
-   ordinary report of what you did, in one line with the same ground, without a new file.
-   The ground is what lets the owner notice a principle that no longer fits and reverse it.
-   Do not go further than that: no separate list of what was settled and no retelling of the
-   owner's history. The record is the report, and reading their own decisions twice is the
-   work this skill exists to remove.
-5. Ask the remaining forks the way the current skill or the owner's rules say. Use a close
+   records the owner's decisions already taken — the accepted decisions of a specification, a
+   decision log — with the ground "by the owner's earlier decision" and the case name. When
+   the work has no such place — a plain session, or a workflow that keeps no record of
+   decisions — act on the option and name it in your ordinary report of what you did, in one
+   line with the same ground, without a new file. The ground is what lets the owner notice a
+   principle that no longer fits and reverse it. Do not go further than that: no separate list
+   of what was settled and no retelling of the owner's history. The record is the report, and
+   reading their own decisions twice is the work this skill exists to remove.
+5. A settled call is decided the owner's way instead of yours: follow it and record it where
+   you record your own decisions, with the same ground. A call that came back **ask** stays
+   yours: decide it as you were going to. It does not turn into a question — consulting the
+   base never adds questions for the owner, it only removes them.
+6. Ask the remaining forks the way the current workflow or the owner's rules say. Use a close
    precedent to make your recommendation match how the owner decides; do not quote it to them.
 
 What is never settled from the base, whatever the precedent:
