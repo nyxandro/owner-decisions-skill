@@ -65,11 +65,13 @@ commit_local() {
 current_branch() {
   local branch default
   if ! branch=$(git symbolic-ref -q --short HEAD); then
+    echo "NOTICE decisions base cannot be used: $dir is not on a branch and needs a look by hand" >&2
     echo "DECISIONS_BRANCH_INVALID: $dir is not on a branch" >&2
     exit 5
   fi
   default=$(git symbolic-ref -q --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##') || true
   if [ -n "$default" ] && [ "$default" != "$branch" ]; then
+    echo "NOTICE decisions base cannot be used: $dir is on branch '$branch' instead of '$default' and needs a look by hand" >&2
     echo "DECISIONS_BRANCH_INVALID: $dir is on '$branch', the base lives on '$default'" >&2
     exit 5
   fi
@@ -101,7 +103,8 @@ merge_remote() {
   git merge -q --no-edit --allow-unrelated-histories "origin/$branch" >/dev/null 2>&1 && return 0
   if git diff --name-only --diff-filter=U | grep -q '^cases/'; then
     git merge --abort 2>/dev/null || true
-    echo "DECISIONS_MERGE_FAILED: the same case file differs locally and remotely in $dir; resolve by hand" >&2
+    echo "NOTICE decisions base is not syncing: the same case file differs on this machine and in the repository; $dir needs a look by hand"
+    echo "DECISIONS_MERGE_FAILED: the same case file differs locally and remotely in $dir" >&2
     exit 4
   fi
   while read -r file; do

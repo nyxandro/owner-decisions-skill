@@ -8,6 +8,34 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [0.4.0] - 2026-11-10
+
+A second reading of the skill by its author and by a reader who had never seen it.
+
+### Changed
+
+- The templates of a case and a topic are in English and are written into the base in the
+  owner's language. Before, the labels were in one language and the consulting agent looked for
+  a label by that name, so the skill settled nothing for anyone else.
+- A reason or a boundary the agent worked out itself is marked as its reading and settles
+  nothing until the owner confirms it. Before, the agent's explanation of why two decisions
+  differ could later pass for the owner's reason.
+- "Irreversible" means the act a decision triggers, not the subject of the feature: how a
+  feature that sends or deletes things behaves is an ordinary fork.
+- A fork settled in a plain session is named in the report with its ground, so a principle
+  that no longer fits gets noticed.
+- The subagent is given the paths of the instructions, the script and the base.
+- Without a person, an unsettled fork is decided by that mode's rules, or by the option
+  easiest to undo.
+- The owner is defined, a client's or teammate's choices are not recorded as the owner's, and
+  nothing a client would call confidential goes into the base.
+- A broken base (wrong branch, the same case differing on two machines) is reported to the
+  owner in one line. A notice is added to the next message instead of interrupting the work.
+
+### Removed
+
+- Repeated statements of the same rule in three places.
+
 ## [0.3.1] - 2026-11-10
 
 ### Fixed

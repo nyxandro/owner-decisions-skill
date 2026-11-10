@@ -6,7 +6,8 @@ decide by your own taste.
 
 ## Steps
 
-1. Run `decisions.sh pull`, then `decisions.sh index`. If either exits with a non-zero code,
+1. You were given the paths of the script `decisions.sh` and of the base folder. Run
+   `decisions.sh pull`, then `decisions.sh index`. If either exits with a non-zero code,
    return "base unavailable" for every fork and stop.
 2. For each fork, pick the topics whose description covers it and read them in full. Read a
    case file only when a principle is not enough to judge: the case holds the situation, the
@@ -20,19 +21,22 @@ decide by your own taste.
 
 **settled** needs all of this:
 
-- a principle whose "Почему" gives the owner's reason, or a case with a stated reason, answers
-  this very question — the same choice in
-  the same kind of situation, not merely the same subject;
+- a principle whose reason line gives the owner's reason, or a case with a stated reason,
+  answers this very question — the same choice in the same kind of situation, not merely the
+  same subject. Topics and cases are written in the owner's language; read the labels by their
+  meaning;
 - the conditions the principle names hold in this project. A principle taken from a small
   personal project does not carry to a project with paying customers, a client or a team
   unless the principle says so. Compare scale, who the users are, whose data it is and what a
   mistake costs;
 - the principle has no entry in the topic's unresolved list and no boundary that puts this
-  project on the other side;
-- the fork is not about money and not about the irreversible (deleting or rewriting stored
-  data, sending or publishing outward, legal commitments). Those are always **ask**. A fork
-  where even one option costs money is about money, also when the owner refused to spend
-  before.
+  project on the other side. A boundary marked as the agent's reading, not the owner's word,
+  counts as unresolved for any project near it;
+- the fork is not about money and not about the irreversible. Those are always **ask**. A
+  fork where even one option costs money is about money, also when the owner refused to spend
+  before. Irreversible means that acting on the decision cannot be undone by the next change:
+  deleting or rewriting stored data, sending or publishing outward, a legal commitment. How a
+  feature that sends or deletes things should behave is an ordinary design fork.
 
 The principle may point to an option nobody offered — for example "no setting at all". That is
 still settled: return that option and say it was missing from the list. A principle gives the
@@ -40,8 +44,8 @@ direction, not the details: name in "Why it applies here" what it leaves open fo
 agent to design.
 
 Everything else is **ask**. When in doubt, ask: a wrong settled verdict costs the owner more
-than one extra question. A principle or case without the owner's reason settles
-nothing.
+than one extra question. A principle or case without the owner's reason settles nothing,
+because without the reason nobody can tell whether this situation is the same one.
 
 ## What to return
 

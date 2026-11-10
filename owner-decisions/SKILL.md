@@ -13,7 +13,7 @@ description: >
   documentation answer, and not for storing project state or task notes. The owner may phrase
   this in another language; match on meaning.
 metadata:
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Owner's decisions
@@ -27,9 +27,13 @@ owner settled a similar one and asks only what is new.
 **Language.** This skill is in English. Everything written into the base is in the language the
 owner speaks: their reasons are kept in their own words.
 
-**Terms.** A *fork* is a decision that belongs to the owner. A *case* is one decision the owner
-made, kept as one file. A *topic* is a file of principles drawn from cases of one kind. The
-*base* is the folder with both, a clone of the owner's private repository.
+**Terms.** The *owner* is the person who runs the agent on this machine and whose base this
+is. A client, a teammate or anyone quoted in the materials is not the owner, and their choices
+are not recorded as the owner's. A *fork* is a choice between options that changes what the
+product does or how the work is done and that you may not make alone. A question about a fact
+is not a fork. A *case* is one decision the owner made, kept as one file. A *topic* is a file of principles drawn from cases of one kind. The
+*base* is the folder with both. It lives on the owner's machine and may be synced with their
+private repository.
 
 ## Where the base is
 
@@ -47,15 +51,21 @@ from this skill's folder:
 | `decisions.sh save --message "<what was recorded>"` | Commits, merges with the remote, sends, checks filing |
 | `decisions.sh check` | Lists cases no topic refers to (`UNFILED`) and references to missing cases (`DANGLING`) |
 
-Run `decisions.sh ensure` yourself, before anything else, each time this skill starts.
+If the base is somewhere else, pass `--dir <path>` to every command.
 
-- A line that starts with `NOTICE` is for the owner: pass it on in one line, in their language,
-  and say nothing else about the base. It appears when the base is first created or cloned,
-  when it stays local and why, and when its repository refuses access. If the owner then gives
-  an address of a private git repository, run `connect --url`.
-- Any non-zero exit means the base cannot be used this time: go on silently as if this skill
-  were not installed — ask the owner everything, record nothing. Never invent a decision
-  because the base could not be read.
+Run `decisions.sh ensure` yourself, before anything else, each time this skill starts — before
+a consultation and before a recording alike, since either may be the first use on a machine.
+
+- A line that starts with `NOTICE` is for the owner: add it, in one line and in their language,
+  to the next message you were going to send them anyway; do not interrupt the work for it.
+  Without a person, put it in the report. It appears when the base is first created or cloned,
+  when it stays local and why, and when the base or its repository is broken. Say nothing else
+  about the base: the owner is busy with their task, and the base is plumbing they should hear
+  about only when it needs them. If the owner then gives an address of a private git
+  repository, run `connect --url`.
+- Any non-zero exit means the base cannot be used this time: pass on a `NOTICE` if there was
+  one, and otherwise go on as if this skill were not installed — ask the owner everything,
+  record nothing. Never invent a decision because the base could not be read.
 - `DECISIONS_REMOTE_UNAVAILABLE`, `DECISIONS_PULL_SKIPPED` and `DECISIONS_PUSH_PENDING` are not
   failures: the local copy is still the owner's decisions, work on it and say nothing.
 
@@ -63,12 +73,14 @@ Run `decisions.sh ensure` yourself, before anything else, each time this skill s
 
 Do this when you have the forks ready and before any of them reaches the owner.
 
-1. Run `decisions.sh ensure`, then `decisions.sh index`. If the index is empty the base has
-   nothing to settle yet: ask every fork as usual and skip to recording after the answers.
+1. Run `decisions.sh index`. If it prints nothing, the base has nothing to settle yet: ask
+   every fork as usual and skip to recording after the answers.
    Otherwise write each fork down fully: the situation, why it matters, the options, your
    recommendation, and the project it is in with its scale and what a mistake costs there.
-2. Hand the forks to a subagent with `references/consult.md` as its instructions, so the base
-   does not fill your context. If the harness has no subagents, follow that file yourself.
+2. Hand the forks to a subagent, so the base does not fill your context. Give it the full
+   paths of `references/consult.md`, to follow as its instructions, of `scripts/decisions.sh`
+   and of the base folder: it starts with none of them. If the harness has no subagents,
+   follow that file yourself.
 3. The subagent returns one verdict per fork:
    - **settled** — the option, the principle or case it rests on, and why this project falls
      under it;
@@ -77,10 +89,13 @@ Do this when you have the forks ready and before any of them reaches the owner.
 4. A settled fork is no longer a question. Take the option and record it where the work
    already records decisions made for the owner — a specification's section of agent decisions
    for review, a decision log of a task without a person — with the ground "by the owner's
-   earlier decision" and the case name. Do not show the owner a separate list of what was
-   settled and do not retell them their own history: the record in the document is enough.
-   When the work has no such document — a plain session — act on the option and name it in
-   your ordinary report of what you did, as one more decision of yours, without a new file.
+   earlier decision" and the case name. When the work has no such place — a plain session, or
+   a workflow that keeps no record of decisions — act on the option and name it in your
+   ordinary report of what you did, in one line with the same ground, without a new file.
+   The ground is what lets the owner notice a principle that no longer fits and reverse it.
+   Do not go further than that: no separate list of what was settled and no retelling of the
+   owner's history. The record is the report, and reading their own decisions twice is the
+   work this skill exists to remove.
 5. Ask the remaining forks the way the current skill or the owner's rules say. Use a close
    precedent to make your recommendation match how the owner decides; do not quote it to them.
 
@@ -89,20 +104,26 @@ What is never settled from the base, whatever the precedent:
 - **money** — spending the owner's or a client's money, prices, paid services, anything that
   changes a bill. A fork where even one option costs money is a money fork, including when the
   precedent is a refusal to spend;
-- **the irreversible** — deleting or rewriting stored data, sending or publishing outward,
-  legal commitments, anything that cannot be taken back by the next change.
+- **the irreversible** — a decision that, once acted on, cannot be taken back by the next
+  change: deleting or rewriting stored data, sending or publishing something outward, a legal
+  commitment, releasing to real users, granting access. What counts is the act the decision
+  triggers, not the subject of the feature. How
+  a feature that sends messages or deletes records should behave is an ordinary design fork,
+  because the design can be changed tomorrow; whether to run a migration over live data, or to
+  publish a repository now, is irreversible.
 
 These always go to the owner as ordinary questions.
 
-Without a person (a task the owner set and left), the base is the first source for every
-decision you take in their place. Money and the irreversible stay off limits there too: follow
-the rules of that mode for what you may not do.
+Without a person (a task the owner set and left), consult the base for every decision you
+take in their place. A settled fork is taken as above. An **ask** fork cannot be asked, so it
+is decided by the rules you were given for working alone; if there are none, take the option
+that is easiest to undo and write it down as awaiting the owner. Money and the irreversible
+stay off limits: leave them undone and name them in the report.
 
 ## After the answer: record it
 
 Do this in the same turn in which the owner answered, before you go on with the work. The
-answer is in the conversation now and will not be there after the session ends. Start with
-`decisions.sh ensure`: the first thing this skill does on a machine may be a recording.
+answer is in the conversation now and will not be there after the session ends.
 
 Record a decision when all hold:
 
@@ -115,7 +136,8 @@ Record a decision when all hold:
   the same choice, for the same reason, in a project of the same kind — is not recorded at
   all: no case, no change to the topic. A new kind of project, a new reason, a reason where the
   principle had none, or a sharper condition is something new;
-- it holds no secrets, credentials or personal data of third parties.
+- it holds no secrets, credentials, personal data of third parties or anything a client would
+  call confidential. Describe a client's project by its kind when its name should not travel.
 
 A reversal of a settled fork is the most valuable record: it shows where a principle ends.
 Record money and irreversible decisions too — they are never settled from the base, but they
@@ -126,24 +148,18 @@ boundary, and run `decisions.sh save`. Several answers from one message go in on
 
 ## Keeping the base true
 
-The base is worth what its principles are worth, so it is merged, not appended.
+The base is worth what its principles are worth, so it is merged, not appended: a new decision
+joins the principle it confirms, becomes a boundary of the one it goes against, or — when
+nothing explains the difference — becomes one short question to the owner. `references/record.md`
+has the steps. Two things hold throughout:
 
-- An answer that exactly repeats a principle leaves no trace: the base grows only from what is
-  new. A case that confirms a principle while adding to it — another kind of project, a
-  reason, a sharper condition — adds its name to that principle and changes the wording. It
-  does not add a second principle.
-- A new case that goes against a principle is a boundary, not an error. If the difference
-  between the projects or situations explains it, write the boundary into the principle: where
-  it holds, where the other answer holds, and why. If nothing explains it, move it to the
-  topic's unresolved list and ask the owner once, in one line, what differs. Until they
-  answer, forks under that principle are **ask**.
-- A decision the owner replaced outright stays as a case with `superseded_by`, and the
-  principle follows the newer one.
-- A topic that grows past about 200 lines or answers two kinds of questions is split.
+- A reason or a boundary you worked out yourself is never written as the owner's. Until the
+  owner confirms it, forks that depend on it are **ask**.
+- Cases are not deleted: they are the record the principles are rebuilt from. A decision the
+  owner replaced stays, marked with `superseded_by`.
 
 When the owner asks to tidy the base, or `check` reports `UNFILED` or `DANGLING`, repair the
-filing first, then merge duplicates and resolve boundaries topic by topic. Do not delete cases:
-they are the record the principles are rebuilt from.
+filing first, then merge duplicates and resolve boundaries topic by topic.
 
 ## Typical failures
 
@@ -151,7 +167,7 @@ they are the record the principles are rebuilt from.
 |---|---|
 | "The precedent is about something similar, I will settle it" | Similar wording is not the same decision. Settle only when the principle's conditions hold in this project; otherwise ask |
 | "The owner once chose the cheap option, so this spending is settled" | Money and the irreversible are never settled from the base |
-| "I will list for the owner what I settled and why" | They asked not to. The record in the document is the report |
+| "I will list for the owner what I settled and why" | The document that records the decision is the report. A second list makes the owner read their own decisions twice, which is the work this skill exists to remove |
 | "I will record the answers at the end of the session" | The session may end first. Record in the turn the answer arrives |
 | "The base is unavailable, I will decide by my own taste" | Then nothing is settled: ask the owner as usual |
 | "Two cases disagree, I will keep the newer one" | First look for what differs between the situations. Replace only when the owner said the old one no longer holds |
