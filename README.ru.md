@@ -32,25 +32,19 @@ md-файлов. Прежде чем попросить вас выбрать м
 | Claude Code, Codex, OpenCode, Cursor и другие | `npx skills add nyxandro/owner-decisions-skill -g` |
 | Любой агент, вручную | Скачайте [последний архив `.skill`](https://github.com/nyxandro/owner-decisions-skill/releases/latest/download/owner-decisions.skill) и распакуйте в папку скиллов агента |
 
-Скилл идёт без базы. База у каждого своя, в собственном приватном репозитории:
+Больше ничего настраивать не нужно. При первом запуске скилл сам создаёт базу в
+`~/.agents/decisions` и одной строкой сообщает, где она лежит и синхронизируется ли:
 
-1. Создайте пустой приватный репозиторий, например `yourname/decisions`.
-2. Склонируйте его в `~/.agents/decisions` на каждой рабочей машине. Скилл наполнит его по мере
-   ваших ответов.
-3. Добавьте в глобальный файл правил агента (`~/.claude/CLAUDE.md`, `AGENTS.md` или подобный)
-   раздел с именем своего репозитория:
+| Ваша машина | Что происходит |
+|---|---|
+| Выполнен вход в GitHub (`gh auth login`) | В вашем аккаунте создаётся приватный репозиторий `decisions` или клонируется, если его уже создала другая машина |
+| GitHub нет или вход не выполнен | База остаётся на этой машине и полноценно работает. В строке сказано, почему нет синхронизации |
+| GitLab, свой сервер git, что угодно ещё | Один раз назовите агенту адрес приватного репозитория, и он подключит к нему базу |
 
-```markdown
-## Owner's decisions base
-
-- My earlier decisions across all projects are kept in `~/.agents/decisions/`, a clone of the private repository `yourname/decisions`. If the folder is missing, clone it there.
-- Before sending me a decision question — a fork, a choice between options — in any skill or plain session, check the forks against this base using the skill for the owner's decisions base, if one is installed. What the base settles is not asked; money and irreversible actions are always asked.
-- Right after I answer such questions or reverse a decision made for me, record the answers in the base with the same skill, in the same turn, before continuing the work.
-- If that skill or the base is unavailable, skip both steps without complaint and ask me as usual.
-```
-
-Именно правило делает оба момента надёжными. Скилл в нём по имени не назван, поэтому другие
-скиллы о нём ничего не знают, а если его убрать, всё работает как раньше.
+Скилл подключается сам, по своему описанию: ни один другой скилл его не называет, и если его
+убрать, ничего не меняется. Если ваш агент забывает о нём посреди другого скилла, добавьте в
+глобальный файл правил строку о том, что вопросы к вам сначала сверяются с базой решений, а
+ответы в неё записываются.
 
 ## Как это работает
 
@@ -90,7 +84,9 @@ topics/   принципы, выведенные из случаев, с гра�
 - Нет ни базы данных, ни сервиса. Подагент читает список тем и подходящие из них. Обычные файлы
   можно читать, править и откатывать руками.
 
-Механическую часть делает `scripts/decisions.sh`: `pull`, `save`, `index` и `check`. Если две
+Механическую часть делает `scripts/decisions.sh`: `ensure`, `connect`, `pull`, `save`, `index` и
+`check`. Папка считается базой только с файлом-меткой, поэтому репозиторий, который просто
+называется `decisions`, скилл не трогает, а публичный репозиторий GitHub отклоняет. Если две
 машины изменили одну строку темы, остаётся удалённая версия, скрипт называет тему, и агент вносит
 свою правку заново.
 

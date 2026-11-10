@@ -33,25 +33,19 @@ This skill keeps them. The more you answer, the less you are asked.
 | Claude Code, Codex, OpenCode, Cursor and others | `npx skills add nyxandro/owner-decisions-skill -g` |
 | Any agent, by hand | Download the [latest `.skill` archive](https://github.com/nyxandro/owner-decisions-skill/releases/latest/download/owner-decisions.skill) and unpack it into the agent's skills folder |
 
-The skill ships without a base. Yours is a private repository of your own:
+There is nothing else to set up. The first time the skill runs it creates your base in
+`~/.agents/decisions` and tells you in one line where it is and whether it syncs:
 
-1. Create an empty private repository, for example `yourname/decisions`.
-2. Clone it to `~/.agents/decisions` on every machine you work on. The skill fills it as you
-   answer questions.
-3. Add this to your agent's global rules file (`~/.claude/CLAUDE.md`, `AGENTS.md` or the like),
-   with your repository's name:
+| Your machine | What happens |
+|---|---|
+| Logged in to GitHub (`gh auth login`) | A private repository `decisions` is created in your account, or cloned if another machine already made it |
+| No GitHub, or not logged in | The base stays on this machine and works fully. The line says why it does not sync |
+| GitLab, your own git server, anything else | Tell the agent the address of a private repository once, and it connects the base to it |
 
-```markdown
-## Owner's decisions base
-
-- My earlier decisions across all projects are kept in `~/.agents/decisions/`, a clone of the private repository `yourname/decisions`. If the folder is missing, clone it there.
-- Before sending me a decision question — a fork, a choice between options — in any skill or plain session, check the forks against this base using the skill for the owner's decisions base, if one is installed. What the base settles is not asked; money and irreversible actions are always asked.
-- Right after I answer such questions or reverse a decision made for me, record the answers in the base with the same skill, in the same turn, before continuing the work.
-- If that skill or the base is unavailable, skip both steps without complaint and ask me as usual.
-```
-
-The rule is what makes the two moments reliable. It names no skill, so other skills know nothing
-about this one, and everything works as before if you remove it.
+The skill attaches itself through its description: no other skill names it, and nothing
+changes if you remove it. If your agent tends to forget it in the middle of another skill, add
+a line to your global rules file saying that questions to you are checked against the decisions
+base first and your answers are recorded in it.
 
 ## How it works
 
@@ -91,7 +85,9 @@ topics/   principles drawn from the cases, with boundaries: where you decided ot
 - There is no database and no service. A subagent reads the list of topics and the ones that
   fit. Plain files can be read, edited and reverted by hand.
 
-`scripts/decisions.sh` does the mechanical part: `pull`, `save`, `index` and `check`. If two
+`scripts/decisions.sh` does the mechanical part: `ensure`, `connect`, `pull`, `save`, `index`
+and `check`. A folder counts as a base only with its marker file, so a repository that is
+merely called `decisions` is never touched, and a public GitHub repository is refused. If two
 machines change the same line of a topic, the remote copy is kept and the script names the
 topic, so the agent applies its change again.
 
@@ -110,7 +106,7 @@ own archive. [CHANGELOG.md](CHANGELOG.md) lists what changed.
 owner-decisions/SKILL.md                 the skill
 owner-decisions/references/consult.md    instructions for the subagent that checks questions
 owner-decisions/references/record.md     the format of a case and a topic, and how a case is filed
-owner-decisions/scripts/decisions.sh     pull, save, index and filing check for the base
+owner-decisions/scripts/decisions.sh     creates, connects, pulls, saves and checks the base
 dist/owner-decisions.skill               the skill folder as a downloadable archive
 docs/specs/                              the design and the decisions behind it (in Russian)
 ```

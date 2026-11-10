@@ -13,7 +13,7 @@ description: >
   documentation answer, and not for storing project state or task notes. The owner may phrase
   this in another language; match on meaning.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Owner's decisions
@@ -63,8 +63,10 @@ Run `decisions.sh ensure` yourself, before anything else, each time this skill s
 
 Do this when you have the forks ready and before any of them reaches the owner.
 
-1. Write each fork down fully: the situation, why it matters, the options, your recommendation,
-   and the project it is in with its scale and what a mistake costs there.
+1. Run `decisions.sh ensure`, then `decisions.sh index`. If the index is empty the base has
+   nothing to settle yet: ask every fork as usual and skip to recording after the answers.
+   Otherwise write each fork down fully: the situation, why it matters, the options, your
+   recommendation, and the project it is in with its scale and what a mistake costs there.
 2. Hand the forks to a subagent with `references/consult.md` as its instructions, so the base
    does not fill your context. If the harness has no subagents, follow that file yourself.
 3. The subagent returns one verdict per fork:
@@ -99,7 +101,8 @@ the rules of that mode for what you may not do.
 ## After the answer: record it
 
 Do this in the same turn in which the owner answered, before you go on with the work. The
-answer is in the conversation now and will not be there after the session ends.
+answer is in the conversation now and will not be there after the session ends. Start with
+`decisions.sh ensure`: the first thing this skill does on a machine may be a recording.
 
 Record a decision when all hold:
 

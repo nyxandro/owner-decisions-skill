@@ -8,6 +8,21 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [0.3.0] - 2026-11-10
+
+### Changed
+
+- The skill sets itself up. On first use it creates the base as a local folder with its own
+  history, and if the machine is logged in to GitHub it clones the account's private base or
+  creates a private repository for it. No manual setup and no rule in the global rules file
+  are needed.
+- The base works without any account: syncing is an addition. A base on GitLab or any other git
+  host is connected by giving the agent its address once.
+- A base is recognised by a marker file, so a repository that is merely called `decisions` is
+  never cloned or written to. A public GitHub repository is refused.
+- The owner hears about the base in one line when it is first created, when it stays local and
+  why, and when its repository refuses access. Everything else stays silent.
+
 ## [0.2.0] - 2026-11-10
 
 ### Changed
