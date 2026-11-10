@@ -33,25 +33,31 @@ made, kept as one file. A *topic* is a file of principles drawn from cases of on
 
 ## Where the base is
 
-The base lives in `~/.agents/decisions/` unless the owner's rules name another place. If the
-folder is missing and the owner's rules name its repository, clone it there. If there is no
-base and no way to get one, or a script command fails, go on silently as if this skill were not
-installed: ask the owner everything, record nothing. Never invent
-a decision because the base could not be read.
-
-`scripts/decisions.sh` does the mechanical part; run it from this skill's folder:
+The base is a folder, `~/.agents/decisions/` unless the owner's rules name another place, with
+its own git history. It works on one machine with no account anywhere; a private repository
+only adds syncing between machines. `scripts/decisions.sh` does the mechanical part; run it
+from this skill's folder:
 
 | Command | What it does |
 |---|---|
+| `decisions.sh ensure` | Makes sure the base exists. On first use it creates the folder and, if the machine is logged in to GitHub, clones the account's private base or creates a private repository for it. Silent when the base is already there |
+| `decisions.sh connect --url <git address>` | Connects a local base to a private repository on any git host. Without `--url` it tries GitHub again |
 | `decisions.sh pull` | Takes the latest base from the remote; changes nothing of yours |
 | `decisions.sh index` | Lists the topics, one line each |
 | `decisions.sh save --message "<what was recorded>"` | Commits, merges with the remote, sends, checks filing |
 | `decisions.sh check` | Lists cases no topic refers to (`UNFILED`) and references to missing cases (`DANGLING`) |
 
-`DECISIONS_REMOTE_UNAVAILABLE`, `DECISIONS_PULL_SKIPPED` and `DECISIONS_PUSH_PENDING` exit with
-zero: the local copy is still the owner's decisions, work on it. They print git's reason; if it
-is not a missing network (access denied, push rejected), tell the owner in one line. Any
-non-zero exit means the base cannot be used this time.
+Run `decisions.sh ensure` yourself, before anything else, each time this skill starts.
+
+- A line that starts with `NOTICE` is for the owner: pass it on in one line, in their language,
+  and say nothing else about the base. It appears when the base is first created or cloned,
+  when it stays local and why, and when its repository refuses access. If the owner then gives
+  an address of a private git repository, run `connect --url`.
+- Any non-zero exit means the base cannot be used this time: go on silently as if this skill
+  were not installed — ask the owner everything, record nothing. Never invent a decision
+  because the base could not be read.
+- `DECISIONS_REMOTE_UNAVAILABLE`, `DECISIONS_PULL_SKIPPED` and `DECISIONS_PUSH_PENDING` are not
+  failures: the local copy is still the owner's decisions, work on it and say nothing.
 
 ## Before the question: settle what the base settles
 
