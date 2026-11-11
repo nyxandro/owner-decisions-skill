@@ -12,7 +12,7 @@ description: >
   or the documentation answer, nor for project state or task notes. The owner may phrase this
   in another language; match on meaning.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # Owner's decisions
@@ -32,8 +32,8 @@ are not recorded as the owner's. A *fork* is a choice between options that chang
 product does or how the work is done and that you may not make alone. A question about a fact
 is not a fork. A *call* is a decision you would take yourself — it follows from the project,
 the documentation or common practice — but one the owner could reasonably disagree with. A
-*case* is one decision the owner made, kept as one file. A *topic* is a file of principles drawn from cases of one kind. The
-*base* is the folder with both. It lives on the owner's machine and may be synced with their
+*case* is one decision the owner made, kept as one file. A *topic* is a file of principles
+drawn from cases of one kind. The *base* is the folder with both. It lives on the owner's machine and may be synced with their
 private repository.
 
 ## Where the base is
@@ -80,22 +80,14 @@ A decision settled from the base is the owner's own answer, given earlier. Takin
 deciding in their place. So a workflow that tells you to ask the owner about every decision of
 theirs is kept, not broken: for that decision they have already been asked.
 
-1. Run `decisions.sh index`. If it prints nothing, the base has nothing to settle yet: ask
-   every fork as usual, take your calls as you would, and skip to recording after the answers.
-   Otherwise write each fork and each call down fully: the situation, why it matters, the
-   options, your recommendation or your choice, and the project it is in with its scale and
-   what a mistake costs there, plus any rule or earlier decision of this project that bears on
-   it. Mark which are forks and which are your calls. The subagent does not read the project:
-   you have studied it already, and what you write here is all it will know about it.
-2. Hand them to a subagent, so the base does not fill your context. Give it the full paths of
-   `references/consult.md`, to follow as its instructions, of `scripts/decisions.sh` and of
-   the base folder: it starts with none of them. If the harness has no subagents, follow that
-   file yourself.
-3. The subagent returns one verdict per item:
-   - **settled** — the option, the principle or case it rests on, and why this project falls
-     under it;
-   - **ask** — the base does not decide it. A precedent that is close but not decisive comes
-     back as a note for you.
+1. Run `decisions.sh pull`, then `decisions.sh index`. If the index prints nothing, the base
+   has nothing to settle yet: ask every fork as usual, take your calls as you would, and skip
+   to recording after the answers.
+2. Read in full the topics whose description covers your forks and calls. Read a case file
+   only when a principle is not enough to judge: the case holds the situation, the options and
+   the owner's reason. Topics and cases are written in the owner's language; read the labels
+   by their meaning. You have studied the project already, so do not reread it for this.
+3. Decide for each fork and each call whether the base settles it, by the test below.
 4. A settled fork is no longer a question. Take the option and record it where the work
    records the owner's decisions already taken — the accepted decisions of a specification, a
    decision log — with the ground "by the owner's earlier decision" and the case name. When
@@ -106,7 +98,7 @@ theirs is kept, not broken: for that decision they have already been asked.
    of what was settled and no retelling of the owner's history. The record is the report, and
    reading their own decisions twice is the work this skill exists to remove.
 5. A settled call is decided the owner's way instead of yours: follow it and record it where
-   you record your own decisions, with the same ground. A call that came back **ask** stays
+   you record your own decisions, with the same ground. A call the base does not settle stays
    yours: decide it as you were going to. It does not turn into a question — consulting the
    base removes questions for the owner, it does not add them. The one exception is a call
    that turns out to be about money or the irreversible: it was never yours to take, so it is
@@ -114,7 +106,35 @@ theirs is kept, not broken: for that decision they have already been asked.
 6. Ask the remaining forks the way the current workflow or the owner's rules say. Use a close
    precedent to make your recommendation match how the owner decides; do not quote it to them.
 
-What is never settled from the base, whatever the precedent:
+### The test: is it settled
+
+Settled needs all of this:
+
+- a principle whose reason line gives the owner's reason, or a case with a stated reason,
+  answers this very question — the same choice in the same kind of situation, not merely the
+  same subject. Without the owner's reason nobody can tell whether this situation is the same
+  one, so a principle or a case without it settles nothing;
+- the conditions the principle names hold in this project. A principle taken from a small
+  personal project does not carry to a project with paying customers, a client or a team
+  unless the principle says so. Compare scale, who the users are, whose data it is and what a
+  mistake costs;
+- the principle has no entry in the topic's unresolved list and no boundary that puts this
+  project on the other side. A boundary marked as an agent's reading, not the owner's word,
+  counts as unresolved for any project near it;
+- no standing rule of the owner and no decision this project has already written down says
+  otherwise: both outrank a precedent from another project;
+- it is not about money and not about the irreversible (below).
+
+Everything else is not settled. The principle may point to an option nobody offered — for
+example "no setting at all"; that is still settled, with that option. A principle gives the
+direction, not the details, which stay yours to design.
+
+You come to this test with a recommendation of your own, and a precedent that agrees with it
+will look closer than it is. The question is whether the owner decided this, not whether their
+decision supports you. When in doubt, it is not settled: a wrong settled decision costs the
+owner more than one extra question.
+
+### Never settled, whatever the precedent
 
 - **money** — spending the owner's or a client's money, prices, paid services, anything that
   changes a bill. A fork where even one option costs money is a money fork, including when the
@@ -122,18 +142,18 @@ What is never settled from the base, whatever the precedent:
 - **the irreversible** — a decision that, once acted on, cannot be taken back by the next
   change: deleting or rewriting stored data, sending or publishing something outward, a legal
   commitment, releasing to real users, granting access. What counts is the act the decision
-  triggers, not the subject of the feature. How
-  a feature that sends messages or deletes records should behave is an ordinary design fork,
-  because the design can be changed tomorrow; whether to run a migration over live data, or to
-  publish a repository now, is irreversible.
+  triggers, not the subject of the feature. How a feature that sends messages or deletes
+  records should behave is an ordinary design fork, because the design can be changed
+  tomorrow; whether to run a migration over live data, or to publish a repository now, is
+  irreversible.
 
 These always go to the owner as ordinary questions.
 
 Without a person (a task the owner set and left), consult the base for every decision you
-take in their place. A settled fork is taken as above. An **ask** fork cannot be asked, so it
-is decided by the rules you were given for working alone; if there are none, take the option
-that is easiest to undo and write it down as awaiting the owner. Money and the irreversible
-stay off limits: leave them undone and name them in the report.
+take in their place. A settled fork is taken as above. A fork the base does not settle cannot
+be asked, so it is decided by the rules you were given for working alone; if there are none,
+take the option that is easiest to undo and write it down as awaiting the owner. Money and
+the irreversible stay off limits: leave them undone and name them in the report.
 
 ## After the answer: record it
 
@@ -169,7 +189,7 @@ nothing explains the difference — becomes one short question to the owner. `re
 has the steps. Two things hold throughout:
 
 - A reason or a boundary you worked out yourself is never written as the owner's. Until the
-  owner confirms it, forks that depend on it are **ask**.
+  owner confirms it, forks that depend on it are not settled.
 - Cases are not deleted: they are the record the principles are rebuilt from. A decision the
   owner replaced stays, marked with `superseded_by`.
 

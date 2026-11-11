@@ -97,9 +97,8 @@ A few things you can say when you want to:
 
 1. An agent has listed the decisions that are yours to make, in any skill or a plain session,
    along with the ones it would take itself but you could disagree with.
-2. Before asking and before building on a guess, it hands them to a subagent. The subagent pulls
-   the base, reads the topics that fit and returns a verdict for each: settled, with the
-   decision it rests on, or ask.
+2. Before asking and before building on a guess, it pulls the base, reads the topics that fit
+   and checks each decision: settled, with the earlier decision it rests on, or not.
 3. A settled question is no longer asked. The agent takes the option and records it where the
    work already records your decisions, with the ground "by your earlier decision". You get no
    separate list and no retelling of your own history.
@@ -176,7 +175,7 @@ topics/   principles drawn from the cases, with boundaries: where you decided ot
 - Topics are merged, not appended. An answer that exactly repeats a principle is not recorded
   at all; one that adds to it joins it. A case that goes against a principle becomes a boundary
   if the situations differ, or one short question to you if nothing explains the difference.
-- There is no database, no vector search and no service. A subagent reads the list of topics
+- There is no database, no vector search and no service. The agent reads the list of topics
   and the ones that fit, so the cost of a check does not grow with the number of cases. Plain
   files can be read, edited and reverted by hand.
 - Headings inside the base are written in your language.
@@ -211,8 +210,7 @@ copy tells you which one it is. Every version has a git tag and a
 
 ```text
 owner-decisions/              the skill
-  SKILL.md                    when it runs, what it does before a question and after an answer
-  references/consult.md       instructions for the subagent that checks decisions against the base
+  SKILL.md                    when it runs, the test for a settled decision, what to record
   references/record.md        the format of a case and a topic, and how a new decision is filed
   scripts/decisions.sh        creates, connects, pulls, saves and checks the base
 dist/owner-decisions.skill    the skill folder as a downloadable archive

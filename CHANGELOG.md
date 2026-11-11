@@ -8,6 +8,18 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [1.1.0] - 2026-11-11
+
+### Changed
+
+- The agent consults the base itself; the subagent is gone. On trial runs a subagent spent
+  about 65 thousand tokens and 45–50 seconds on one consultation, nearly all of it on starting
+  up, while the topics it read took a few thousand. The topic is read by the main agent anyway
+  when an answer is recorded, so the subagent saved little context.
+- The test for a settled decision moved from `references/consult.md` into `SKILL.md`, and that
+  file is removed. The test now warns against reading a precedent as support for the agent's
+  own recommendation, which is what the separate reader used to guard against.
+
 ## [1.0.1] - 2026-11-11
 
 ### Changed
