@@ -128,7 +128,6 @@ owner-decisions/references/consult.md    instructions for the subagent that chec
 owner-decisions/references/record.md     the format of a case and a topic, and how a case is filed
 owner-decisions/scripts/decisions.sh     creates, connects, pulls, saves and checks the base
 dist/owner-decisions.skill               the skill folder as a downloadable archive
-docs/specs/                              the design and the decisions behind it (in Russian)
 ```
 
 </details>
