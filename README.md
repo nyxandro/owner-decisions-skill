@@ -67,6 +67,18 @@ base first and your answers are recorded in it.
 4. You answer the rest. In the same turn the agent writes each answer as a case, files it under
    a topic and pushes the base.
 
+## Works well with
+
+[Feature Blueprint](https://github.com/nyxandro/feature-blueprint-skill) designs a feature
+before any code and sorts every decision into the agent's own and yours. That sorting is what
+this skill needs to be useful: the decisions that are yours arrive as a clear list, each with
+its situation and options, at the one moment before the design is built on a guess. And the
+answers you give at its checkpoint are the richest source for the base, because each comes with
+the options you turned down and your reason.
+
+Neither skill needs the other. Owner Decisions works the same way in any workflow or plain
+session where an agent is about to ask you to decide something.
+
 ## What is never settled for you
 
 - **Money.** Spending, prices, paid services. A question where even one option costs money goes
