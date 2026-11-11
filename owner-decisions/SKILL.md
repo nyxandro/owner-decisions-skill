@@ -12,7 +12,7 @@ description: >
   or the documentation answer, nor for project state or task notes. The owner may phrase this
   in another language; match on meaning.
 metadata:
-  version: "0.5.1"
+  version: "1.0.0"
 ---
 
 # Owner's decisions

@@ -4,9 +4,20 @@ The current version is `metadata.version` in `owner-decisions/SKILL.md`. Every v
 `vX.Y.Z` in git and published as a GitHub release with its own `.skill` archive. Versions are
 numbered MAJOR.MINOR.PATCH.
 
-- **PATCH** (0.1.1) is a fix or clearer wording. The skill behaves the same.
-- **MINOR** (0.2.0) is a new or changed rule, for example what may be settled without asking.
-- **MAJOR** (1.0.0) changes the format of the base or how the skill attaches to other work.
+- **PATCH** (1.0.1) is a fix or clearer wording. The skill behaves the same.
+- **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
+- **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
+
+## [1.0.0] - 2026-11-11
+
+The first stable version. The skill behaves as in 0.5.1.
+
+### Added
+
+- The skill installs as a Claude Code plugin from the
+  [nyxandro/skills](https://github.com/nyxandro/skills) catalog.
+- The page of the repository in English and in Russian: usage, an example, requirements and
+  install options.
 
 ## [0.5.1] - 2026-11-10
 
@@ -34,9 +45,6 @@ the owner about every one of theirs, and writes a full specification before aski
 - A settled fork is recorded among the owner's accepted decisions, a settled call among the
   agent's decisions.
 - A decision the project has already made outranks a precedent from another project.
-
-- **2026-11-10.** The skill installs as a Claude Code plugin from the
-  [nyxandro/skills](https://github.com/nyxandro/skills) catalog.
 
 ## [0.4.0] - 2026-11-10
 
