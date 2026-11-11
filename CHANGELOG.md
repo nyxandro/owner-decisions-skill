@@ -8,6 +8,16 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [1.0.1] - 2026-11-11
+
+### Changed
+
+- The subagent that consults the base is told not to read the project: it judges from the
+  description the asking agent gives and from the base. The asking agent adds to that
+  description any rule or earlier decision of the project that bears on the question. The
+  behaviour is the same; the wording closes a way to spend a whole project's reading on one
+  consultation.
+
 ## [1.0.0] - 2026-11-11
 
 The first stable version. The skill behaves as in 0.5.1.

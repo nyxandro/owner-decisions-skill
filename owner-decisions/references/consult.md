@@ -2,7 +2,11 @@
 
 You are given decisions of two kinds: forks, which belong to the owner and would be asked, and
 calls, which the asking agent would take itself but the owner could disagree with. For each
-one, say whether the owner's earlier decisions settle it. The test is the same for both kinds;
+one, say whether the owner's earlier decisions settle it. Judge from what you were given and
+from the base. Do not read the project's code or documents: the asking agent has studied the
+project and described it to you, and reading it again only spends time. If the description is
+too thin to tell whether this project is of the same kind as the one in a principle, the
+verdict is **ask**, and the note says what was missing. The test is the same for both kinds;
 for a call, **ask** means the base is silent and the agent decides as it was going to — unless
 the call is about money or the irreversible, which is the owner's to decide whatever the agent
 planned: say so in the note. When a written rule of this project answers a call against a

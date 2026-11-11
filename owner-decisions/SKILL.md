@@ -12,7 +12,7 @@ description: >
   or the documentation answer, nor for project state or task notes. The owner may phrase this
   in another language; match on meaning.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Owner's decisions
@@ -84,7 +84,9 @@ theirs is kept, not broken: for that decision they have already been asked.
    every fork as usual, take your calls as you would, and skip to recording after the answers.
    Otherwise write each fork and each call down fully: the situation, why it matters, the
    options, your recommendation or your choice, and the project it is in with its scale and
-   what a mistake costs there. Mark which are forks and which are your calls.
+   what a mistake costs there, plus any rule or earlier decision of this project that bears on
+   it. Mark which are forks and which are your calls. The subagent does not read the project:
+   you have studied it already, and what you write here is all it will know about it.
 2. Hand them to a subagent, so the base does not fill your context. Give it the full paths of
    `references/consult.md`, to follow as its instructions, of `scripts/decisions.sh` and of
    the base folder: it starts with none of them. If the harness has no subagents, follow that
