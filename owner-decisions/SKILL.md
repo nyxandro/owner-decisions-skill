@@ -14,7 +14,7 @@ description: >
   nor for project state or task notes. The owner may phrase this in another language; match
   on meaning.
 metadata:
-  version: "1.3.1"
+  version: "1.3.2"
 ---
 
 # Owner's decisions
@@ -255,8 +255,8 @@ into a memory shared by all projects: everything there reaches every project as 
 not start a new document or a new kind of record for it; when there is no such place, the
 decision stays in the work itself.
 
-Right before you write, run `decisions.sh pull` and `decisions.sh index` again and reread the
-topic you will write into, even if you read them earlier in this session. Another session or
+Right before you write, run `decisions.sh pull`, `decisions.sh index` and `decisions.sh check`
+again and reread the topic you will write into, even if you read them earlier in this session. Another session or
 machine may have written since, and if this conversation was rolled back or a message was sent
 again, what you read earlier may predate your own earlier write: a rollback undoes the
 conversation, not the files already in the base.

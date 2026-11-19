@@ -11,10 +11,17 @@ One file per decision: `cases/<YYYY-MM-DD>-<project>-<slug>.md`. The date is the
 decided, the slug is three to six words in Latin letters. The name is unique, so two machines
 never write the same file. A case is not rewritten later, except to add `superseded_by`.
 
-Before writing a case, list the cases of this project dated today (`cases/<today>-<project>-*`)
-and read those on the same question. A turn redone after a rollback, or another session, may
-have recorded this answer already. The same answer → write nothing. A different answer to the
-same question → write the new case and mark the earlier one `superseded_by` it.
+Before writing a case, run `decisions.sh check` and list the cases dated today and yesterday,
+whatever their project (`cases/<today>-*`, `cases/<yesterday>-*`); read those on the same
+question. A turn redone after a rollback or a message sent again, or another session, may have
+recorded this answer already — perhaps under another spelling of the project or under `all`.
+Name the project the way the base already names it.
+
+- The same answer → write no new case. If that case is `UNFILED`, the earlier turn stopped
+  before filing it: file it now and save.
+- A different answer to the same fork in the same situation → the owner changed their answer:
+  step 4 below, without a question.
+- A different answer in a different situation → a new case, filed by steps 1–3.
 
 ```markdown
 ---

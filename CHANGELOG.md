@@ -8,6 +8,22 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [1.3.2] - 2026-11-19
+
+### Fixed
+
+- The check for an answer already recorded looks at all cases from today and yesterday, not
+  only those named after the current project: the same project can be spelled two ways, a
+  decision for every project is named `all`, and a turn can be redone after midnight. The
+  project is named the way the base already names it.
+- The agent runs `decisions.sh check` before writing. A case an interrupted turn wrote but did
+  not file shows up as `UNFILED`; when the answer is the same, it is filed and saved instead of
+  being left unread by every later consultation.
+- A different answer replaces the earlier case only when it is the same fork in the same
+  situation, which means the owner changed their answer. A different situation is filed as a
+  boundary or a new principle, as before. 1.3.1 replaced on any different answer, against the
+  rule that a case is replaced only when the owner's decision changed.
+
 ## [1.3.1] - 2026-11-19
 
 ### Fixed
