@@ -67,8 +67,28 @@ Cases: [[case-name]], [[case-name]]
 - [[case-a]] against [[case-b]]: <what disagrees>. The owner was asked on <date>.
 ```
 
-Every case is named in at least one topic as `[[file name without .md]]`; `decisions.sh check`
-verifies this.
+Every case is named in at least one topic or stop as `[[file name without .md]]`;
+`decisions.sh check` verifies this.
+
+## The stops
+
+`stops.md` at the root of the base holds every stop, under a few sections by subject. It is
+shown whole with every index, so keep each stop to one or two lines, and the file short. Create
+it with the first stop.
+
+```markdown
+# <Stops>
+
+## <Subject: actions, files, communication…>
+
+- <Never X> — unless <where it does not hold; omit if the owner named none>. "<the owner's
+  words>" [[case-name]], [[case-name]]
+```
+
+A stop says what not to do, in terms of the action an agent is about to take, so that it is
+recognised before that action. The reason is the owner's words, as for a principle. The
+"unless" part, like a boundary, is the owner's or is marked as your reading. A stop is not
+repeated in a topic: a principle that turns out to be a stop moves here, with its cases.
 
 The reason line holds the owner's reason and nothing else. A principle settles later questions
 only through it: without the reason nobody can tell whether a new situation is the same one. So
@@ -78,6 +98,14 @@ your reading. A boundary marked that way does not settle anything near it — su
 asked, and the owner's answer replaces your reading.
 
 ## Filing a new decision
+
+A correction that is a stop is filed in `stops.md`, not in a topic, and the steps below apply
+to the stop as they do to a principle: an exact repeat writes nothing, and a new reason or a
+sharper "unless" updates the line. A new stop is a new line under its subject. Stops have no
+unresolved list: a reversal of a stop that nothing explains is asked about once, and the stop
+stays as it is until the owner answers. A stop the owner lifted is removed from `stops.md`; the
+case that lifts it goes to the topic of its subject as a principle naming the stop's cases as
+replaced, and those cases get `superseded_by` it, so `check` still finds every case filed.
 
 0. The decision exactly repeats a principle — the same choice in a project of the same kind,
    with the same reason or with no reason given → write nothing. No case, no edit, no save.
@@ -101,6 +129,6 @@ lines or answers two kinds of questions, split it.
 
 Then run `decisions.sh save --message "<project>: <what was decided>"`. If it prints `UNFILED`
 or `DANGLING`, fix the filing and save again. If it prints `TOPIC_OVERWRITTEN <file>`, another
-machine changed that topic at the same time and its copy was kept: reread the topic, apply your
-change to it again and save again. If the save fails, nothing is lost: the files stay in the
+machine changed that topic or `stops.md` at the same time and its copy was kept: reread the
+file, apply your change to it again and save again. If the save fails, nothing is lost: the files stay in the
 folder and go out with the next save.

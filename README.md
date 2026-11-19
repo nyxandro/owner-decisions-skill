@@ -90,6 +90,8 @@ A few things you can say when you want to:
 - *What did I decide about backups before?*
 - *Why did I choose differently in these two projects?*
 - *No, here I do want the setting.* A reversal is recorded and marks where a principle ends.
+- *Stop, I did not ask you to install that.* If it is about installing unasked as such, not this
+  moment, it becomes a stop that every agent sees when it opens the base.
 - *Sync the decisions base with git@gitlab.com:me/decisions.git.*
 - *Tidy the decisions base.*
 
@@ -105,7 +107,7 @@ A few things you can say when you want to:
 4. A decision of the agent's own that the base covers is taken your way. One the base is silent
    on stays the agent's: consulting the base does not add questions for you.
 5. You answer the rest. In the same turn the agent writes each answer that carries to other
-   projects as a case, files it under a topic and pushes the base.
+   projects as a case, files it under a topic or as a stop and pushes the base.
 
 What goes into the base is decided by your reason. "People should not manage settings" holds
 anywhere; "for a personal project the risk is accepted" holds for personal projects and is
@@ -113,8 +115,14 @@ kept with that condition; "I will look at this page myself" was for that moment.
 with no reason stays out, unless you said it holds everywhere. Every reversal of something
 taken from the base is recorded: it shows where a principle ends.
 
-A correction in the moment is weighed the same way and is usually about that moment, so it is
-kept nowhere. A decision for one project stays with that project and only if a later session
+When you stop the agent mid-work — "I did not ask for this", "why did you do that" — the
+correction is weighed the same way. Most are about that moment and are kept nowhere. One whose
+reason holds anywhere ("I did not ask you to install it") becomes a stop: a line in one short
+file, `stops.md`, that the agent sees every time it opens the base, whatever its question.
+Before an action a stop names, the agent follows it; if the project gives a concrete reason to
+do otherwise, it asks you first and names that reason, and never breaks a stop silently.
+
+A decision for one project stays with that project and only if a later session
 would otherwise get it wrong: in the documents the project keeps its decisions in, or in a
 memory of the agent's that belongs to this project only. The agent does not write decisions
 into `AGENTS.md`, `CLAUDE.md` or a memory shared by all projects, and does not start new files
@@ -181,6 +189,7 @@ No switch at all: the bot decides by itself when a digest is worth sending.
 ```text
 cases/    one file per decision: the question, the options, your choice, your reason
 topics/   principles drawn from the cases, with boundaries: where you decided otherwise and why
+stops.md  what you stopped agents from doing, shown with every look at the base
 ```
 
 - Cases are the record. Each has a unique name, so two machines never write the same file, and
@@ -194,8 +203,8 @@ topics/   principles drawn from the cases, with boundaries: where you decided ot
 - Headings inside the base are written in your language.
 
 `scripts/decisions.sh` does the mechanical part: `ensure`, `connect`, `pull`, `save`, `index`
-and `check`. If two machines change the same line of a topic, the remote copy is kept and the
-script names the topic, so the agent applies its change again.
+and `check`. If two machines change the same line of a topic or of `stops.md`, the remote copy
+is kept and the script names the file, so the agent applies its change again.
 
 ## Works well with
 
@@ -226,6 +235,7 @@ owner-decisions/              the skill
   SKILL.md                    when it runs, the test for a settled decision, what to record
   references/record.md        the format of a case and a topic, and how a new decision is filed
   scripts/decisions.sh        creates, connects, pulls, saves and checks the base
+tests/decisions.test.sh       tests of the script's index and filing check
 dist/owner-decisions.skill    the skill folder as a downloadable archive
 CHANGELOG.md                  what changed in each version
 README.md, README.ru.md       this page in English and in Russian

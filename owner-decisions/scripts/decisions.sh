@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Deterministic part of the owner's decisions base: create it on first use, connect it to a
-# private repository, pull, save, list topics and check that every case is filed under a topic.
+# private repository, pull, save, list topics with the owner's stops and check that every case
+# is filed under a topic or a stop.
 # The agent does the reading and the writing.
 #
 # Lines starting with NOTICE are for the owner: the agent passes each on in one line.
@@ -33,6 +34,9 @@ done
 # A folder is a decisions base only with this file: a repository that is merely called
 # "decisions" is never cloned, merged or written to.
 MARKER=".decisions-base"
+# The owner's stops: one file, shown whole with every index, so an agent sees them whatever
+# question brought it to the base.
+STOPS="stops.md"
 export GIT_TERMINAL_PROMPT=0
 
 if ! command -v git >/dev/null 2>&1; then
@@ -89,8 +93,8 @@ report_remote_failure() {
 }
 
 # Cases are one file per decision with unique names, so they never conflict. Everything else is
-# derived or descriptive: on a conflict the remote copy wins, and an overwritten topic is
-# reported so the agent rereads it and applies its change again.
+# derived or descriptive: on a conflict the remote copy wins, and an overwritten topic or stops
+# file is reported so the agent rereads it and applies its change again.
 merge_remote() {
   local branch=$1 err file
   has_remote || return 1
@@ -111,7 +115,7 @@ merge_remote() {
     [ -n "$file" ] || continue
     git checkout -q --theirs -- "$file"
     git add -- "$file"
-    case $file in topics/*) echo "TOPIC_OVERWRITTEN $file" ;; esac
+    case $file in topics/*|"$STOPS") echo "TOPIC_OVERWRITTEN $file" ;; esac
   done < <(git diff --name-only --diff-filter=U)
   git commit -q --no-edit
 }
@@ -123,12 +127,15 @@ push_remote() {
   fi
 }
 
+# A case is filed when a topic or the stops file names it.
 check() {
   local found=0 name
+  local sources=(topics/)
+  [ -f "$STOPS" ] && sources+=("$STOPS")
   for f in cases/*.md; do
     [ -e "$f" ] || continue
     name=$(basename "$f" .md)
-    if ! grep -rqF "[[$name]]" topics/ 2>/dev/null; then
+    if ! grep -rqF "[[$name]]" "${sources[@]}" 2>/dev/null; then
       echo "UNFILED $name"
       found=1
     fi
@@ -139,7 +146,7 @@ check() {
       echo "DANGLING $name"
       found=1
     fi
-  done < <(grep -rhoE '\[\[[^]]+\]\]' topics/ 2>/dev/null | tr -d '[]' | sort -u)
+  done < <(grep -rhoE '\[\[[^]]+\]\]' "${sources[@]}" 2>/dev/null | tr -d '[]' | sort -u)
   [ $found -eq 0 ] && echo "CHECK_OK"
   return 0
 }
@@ -199,6 +206,7 @@ similar one was settled before and ask only what is new.
 
 - `cases/` — one file per decision: the question, the options, the choice, the reason.
 - `topics/` — principles drawn from the cases, with boundaries.
+- `stops.md` — what the owner stopped agents from doing, shown with every index.
 
 Read and maintained by the `owner-decisions` agent skill. Keep the repository private.
 EOF
@@ -318,6 +326,10 @@ case $cmd in
       desc=$(sed -n 's/^description: *//p' "$f" | head -1)
       echo "$(basename "$f" .md) — $desc"
     done
+    if [ -s "$STOPS" ]; then
+      printf '\nSTOPS\n'
+      cat "$STOPS"
+    fi
     ;;
   check)
     enter_base

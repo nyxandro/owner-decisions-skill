@@ -8,6 +8,36 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [1.3.0] - 2026-11-19
+
+### Added
+
+- Stops: what the owner stopped agents from doing mid-work ("I did not ask for this"), when
+  the objection is to a kind of action taken unasked and nothing ties it to that moment or that
+  project. They live in one short file, `stops.md`, under a few sections by subject, and
+  nowhere else. When the agent is unsure, it is not a stop; when the owner objects to the same
+  kind of action again, it is.
+- `decisions.sh index` shows `stops.md` whole after the list of topics, so an agent sees every
+  stop whatever question brought it to the base. A topic, by contrast, is read only when its
+  question comes up, and a stop is about an action that does not look like a question.
+- The skill also starts before an action nobody asked for (installing, sending outward,
+  editing a rules file, rewriting stored data) and when the owner stops the agent mid-work.
+- Before an action a stop names, the agent follows it. If the project gives a concrete reason
+  to do otherwise, it asks the owner once and names that reason; it never breaks a stop
+  silently, and without a person it leaves the action undone. A decision settled from the base
+  never leads to an action a stop forbids.
+- Permission "this time" leaves a stop as it was. A reason that holds for projects of a kind
+  becomes the stop's "unless" line. A lifted stop is removed, and the case that lifts it goes
+  to a topic so every case stays filed.
+- Tests for the script: `tests/decisions.test.sh`.
+
+### Changed
+
+- `decisions.sh check` counts a case named in `stops.md` as filed and reports a stop that names
+  a missing case.
+- `decisions.sh save` reports a conflicting `stops.md` as `TOPIC_OVERWRITTEN`, as it does for a
+  topic, so a stop added on another machine is not lost silently.
+
 ## [1.2.0] - 2026-11-19
 
 The test "it shows how they decide, so it can apply again" was read loosely, and decisions that
