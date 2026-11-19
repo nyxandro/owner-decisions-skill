@@ -11,6 +11,11 @@ One file per decision: `cases/<YYYY-MM-DD>-<project>-<slug>.md`. The date is the
 decided, the slug is three to six words in Latin letters. The name is unique, so two machines
 never write the same file. A case is not rewritten later, except to add `superseded_by`.
 
+Before writing a case, list the cases of this project dated today (`cases/<today>-<project>-*`)
+and read those on the same question. A turn redone after a rollback, or another session, may
+have recorded this answer already. The same answer → write nothing. A different answer to the
+same question → write the new case and mark the earlier one `superseded_by` it.
+
 ```markdown
 ---
 date: 2026-11-10
@@ -46,7 +51,8 @@ feature.
 `topics/<slug>.md` holds the principles drawn from cases of one kind. Before writing anything,
 run `decisions.sh index` and read the topic that fits: whether a case is written at all depends
 on what the topic already holds. Start a new topic only when no description covers the
-question.
+question: before naming one, compare its subject with every description the index printed just
+now. A topic on the same subject under another name means you write into it, not beside it.
 
 ```markdown
 ---

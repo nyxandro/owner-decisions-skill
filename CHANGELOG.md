@@ -8,6 +8,20 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [1.3.1] - 2026-11-19
+
+### Fixed
+
+- Right before writing, the agent pulls the base and reads the index again, and rereads the
+  topic it writes into, even if it read them earlier in the session. In one session a message
+  was sent again several times; each time the agent wrote from what it had read before its own
+  first write, recorded the same answers again and started a second topic on the same subject
+  under a near-identical name. A rollback undoes the conversation, not the files in the base.
+- Before writing a case, the agent reads the cases of the same project dated today on the same
+  question: the same answer writes nothing, a changed one supersedes the earlier case.
+- A new topic is started only after comparing its subject with every description in a fresh
+  index; a topic on the same subject under another name is written into.
+
 ## [1.3.0] - 2026-11-19
 
 ### Added
