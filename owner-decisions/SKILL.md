@@ -6,22 +6,25 @@ description: >
   are the owner's to make — a fork, a choice between options — in any skill, plan,
   specification or plain session, BEFORE asking them and before building on a guess. Use it
   also for a decision you are about to take yourself that the owner could disagree with. Use it
-  again right after the owner answers such questions or reverses a decision made for them, to
-  record it. Also when you work without a person, and when the owner asks what they decided
-  before, why two decisions differ, or to tidy the base. Not for facts the project, the code
-  or the documentation answer, nor for project state or task notes. The owner may phrase this
-  in another language; match on meaning.
+  again right after the owner answers such questions, reverses a decision made for them or
+  tells you that a choice you made is not what they wanted, to record what of it carries to
+  other projects. Also
+  when you work without a person, and when the owner asks what they decided before, why two
+  decisions differ, or to tidy the base. Not for facts the project, the code or the
+  documentation answer, nor for project state or task notes. The owner may phrase this in
+  another language; match on meaning.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Owner's decisions
 
 The owner runs several projects through agents and keeps answering the same kinds of questions:
 do people get a setting or does the system decide, is this risk worth a mechanism, how much
-process a small thing needs. Each answer shows how they decide. This skill keeps those answers
-in one base shared by all projects and machines, so an agent settles a new question the way the
-owner settled a similar one and asks only what is new.
+process a small thing needs. Many answers show how they decide anywhere; others hold only for
+the project and the moment they were given in. This skill keeps the first kind in one base
+shared by all projects and machines, so an agent settles a new question the way the owner
+settled a similar one and asks only what is new.
 
 **Language.** This skill is in English. Everything written into the base is in the language the
 owner speaks: their reasons are kept in their own words.
@@ -162,11 +165,19 @@ answer is in the conversation now and will not be there after the session ends.
 
 Record a decision when all hold:
 
-- the owner said or chose it themselves: an answer to a fork, an explicit instruction, or a
-  reversal of what you or the base decided. Silence, "ok" to something else and your own
-  unconfirmed recommendation are not decisions;
-- it shows how they decide, so it can apply again. A name, a date, a number or a text that
-  matters to this feature only is not a case;
+- the owner said or chose it themselves: an answer to a fork, an explicit instruction, a
+  reversal of what you or the base decided, or a correction of what you did. Silence, "ok" to
+  something else and your own unconfirmed recommendation are not decisions;
+- it carries to other projects, and the owner's reason or their own words are what make it
+  carry. A reason about how things should be — "people should not manage settings, the bot is
+  there to be smart" — holds in any project. A reason that is a trait other projects share —
+  a personal project, no paying users, a client's data — carries to projects of that kind:
+  record it with that condition. A fact of this one project — "in this project we keep no
+  specs" — or of this moment — "I will look at it myself" — does not, and the decision is
+  narrow. Without a reason it is narrow too, unless the owner's words set it for everywhere:
+  "always", "in every project", "this is how I work". A name, a date, a number or a text that
+  matters to this feature only is narrow. Decide this yourself; do not ask the owner whether
+  to record;
 - it says something the base does not hold yet. An answer that exactly repeats a principle —
   the same choice, for the same reason, in a project of the same kind — is not recorded at
   all: no case, no change to the topic. A new kind of project, a new reason, a reason where the
@@ -174,9 +185,32 @@ Record a decision when all hold:
 - it holds no secrets, credentials, personal data of third parties or anything a client would
   call confidential. Describe a client's project by its kind when its name should not travel.
 
-A reversal of a settled fork is the most valuable record: it shows where a principle ends.
-Record money and irreversible decisions too — they are never settled from the base, but they
-tune your recommendations.
+A reversal of anything taken from the base — a settled fork or a settled call — is the most
+valuable record: it shows where a principle ends. It is recorded whatever its reason: a reason
+that belongs to this project is the principle's boundary, and a reversal with no reason goes
+to the unresolved list, as `references/record.md` says. Record money and irreversible
+decisions that carry too — they are never settled from the base, but they tune your
+recommendations.
+
+A correction — the owner telling you after the fact that a choice you made is not what they
+wanted — shows a decision you took without seeing one. When that choice came from the base,
+it is a reversal, above. Otherwise weigh it by the same test: most corrections are about this
+task or this moment and are narrow — "do not open the browser, I will look myself" is how the
+owner wants this result checked now, not a rule. Do not ask the owner to explain a correction
+or to confirm it as a rule; the one question `references/record.md` allows for a reversal
+nothing explains still stands. A correction that is recorded gets `source: reversal`.
+
+A decision about the moment — how the owner wants this result checked now, what to skip this
+time — is kept nowhere: it was for that moment. A decision about this project stays out of the
+base and is kept only when a later session in this project would otherwise get it wrong; most
+need no record at all. Keep it in a place that this project alone reads: where the project
+already keeps the truth about itself and its decisions — a specification, a decision log,
+other documents it maintains as that — or in a memory that belongs to this project only, if
+you have one. Add it the way that place takes entries. Do not write it into the agent's rules
+files (`AGENTS.md`, `CLAUDE.md` and the like), even where your tools call them memory, nor
+into a memory shared by all projects: everything there reaches every project as a rule. Do
+not start a new document or a new kind of record for it; when there is no such place, the
+decision stays in the work itself.
 
 Then follow `references/record.md`: write the case, file it under a topic, merge or mark the
 boundary, and run `decisions.sh save`. Several answers from one message go in one save.
@@ -204,5 +238,8 @@ filing first, then merge duplicates and resolve boundaries topic by topic.
 | "The owner once chose the cheap option, so this spending is settled" | Money and the irreversible are never settled from the base |
 | "I will list for the owner what I settled and why" | The document that records the decision is the report. A second list makes the owner read their own decisions twice, which is the work this skill exists to remove |
 | "I will record the answers at the end of the session" | The session may end first. Record in the turn the answer arrives |
+| "The owner decided it, so it goes into the base" | Only what carries to other projects goes there. A decision about this project or this moment stays with the project, or nowhere |
+| "The owner was sharp about it, so it must be a rule" | A sharp correction is usually about this result now. It goes into the base only when the reason or the owner's words make it hold elsewhere |
+| "I will put this project's decision into `AGENTS.md`, my shared memory, or a new notes file" | Rules files and memory shared by all projects reach everywhere as rules. A project's decision goes only where this project alone reads it, and no new document is started for it |
 | "The base is unavailable, I will decide by my own taste" | Then nothing is settled: ask the owner as usual |
 | "Two cases disagree, I will keep the newer one" | First look for what differs between the situations. Replace only when the owner said the old one no longer holds |

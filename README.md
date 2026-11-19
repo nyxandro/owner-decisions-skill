@@ -27,11 +27,11 @@ If you run projects through AI agents, you answer the same kinds of questions ag
 - Is this risk worth a mechanism?
 - Does a small thing need a process?
 
-Each answer shows how you decide, and each one is lost when the session ends. The next agent,
-in the next project, asks again or guesses.
+Many answers show how you decide in any project, and each one is lost when the session ends.
+The next agent, in the next project, asks again or guesses.
 
-This skill keeps the answers. The more you answer, the less you are asked, and the agent's own
-decisions start to follow yours.
+This skill keeps the answers that carry across projects. The more you answer, the less you are
+asked, and the agent's own decisions start to follow yours.
 
 ## Install
 
@@ -104,8 +104,21 @@ A few things you can say when you want to:
    separate list and no retelling of your own history.
 4. A decision of the agent's own that the base covers is taken your way. One the base is silent
    on stays the agent's: consulting the base does not add questions for you.
-5. You answer the rest. In the same turn the agent writes each answer as a case, files it under
-   a topic and pushes the base.
+5. You answer the rest. In the same turn the agent writes each answer that carries to other
+   projects as a case, files it under a topic and pushes the base.
+
+What goes into the base is decided by your reason. "People should not manage settings" holds
+anywhere; "for a personal project the risk is accepted" holds for personal projects and is
+kept with that condition; "I will look at this page myself" was for that moment. A decision
+with no reason stays out, unless you said it holds everywhere. Every reversal of something
+taken from the base is recorded: it shows where a principle ends.
+
+A correction in the moment is weighed the same way and is usually about that moment, so it is
+kept nowhere. A decision for one project stays with that project and only if a later session
+would otherwise get it wrong: in the documents the project keeps its decisions in, or in a
+memory of the agent's that belongs to this project only. The agent does not write decisions
+into `AGENTS.md`, `CLAUDE.md` or a memory shared by all projects, and does not start new files
+for them.
 
 ## What is never settled for you
 

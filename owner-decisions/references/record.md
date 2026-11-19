@@ -36,7 +36,8 @@ given and do not make one up>
 ```
 
 `source: history` marks a case taken from old materials rather than from a live answer;
-`reversal` marks the owner overturning a decision made for them. `context` is what lets a later
+`reversal` marks the owner overturning a decision made for them, including a choice an agent
+made on its own and the owner corrected afterwards. `context` is what lets a later
 reader tell whether a new project is of the same kind, so describe the project, not the
 feature.
 

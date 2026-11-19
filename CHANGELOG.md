@@ -8,6 +8,31 @@ numbered MAJOR.MINOR.PATCH.
 - **MINOR** (1.1.0) is a new or changed rule, for example what may be settled without asking.
 - **MAJOR** (2.0.0) changes the format of the base or how the skill attaches to other work.
 
+## [1.2.0] - 2026-11-19
+
+The test "it shows how they decide, so it can apply again" was read loosely, and decisions that
+hold only in one project or for one moment went into the base shared by all projects.
+
+### Changed
+
+- Only decisions that carry to other projects go into the base, and the owner's reason
+  decides. A reason about how things should be carries anywhere. A reason that is a trait
+  other projects share, such as a personal project or no paying users, carries to projects of
+  that kind and is kept with that condition. A fact of one project or of one moment does not.
+  A decision without a reason stays out unless the owner said it holds everywhere. The agent
+  judges this itself and does not ask.
+- A decision about the moment is kept nowhere. A decision about one project is kept only when
+  a later session there would otherwise get it wrong, and only where that project alone reads
+  it: the documents it keeps its decisions in, or the agent's memory for that project. Never in
+  the agent's rules files (`AGENTS.md`, `CLAUDE.md`) or a memory shared by all projects, and
+  never in a new file.
+- Every reversal of something taken from the base, a fork or a call, is recorded whatever its
+  reason; one with no reason goes to the unresolved list.
+- Money and irreversible decisions are recorded only when they carry to other projects.
+- The skill also starts when the owner says a choice the agent made is not what they wanted.
+  Such a correction is weighed by the same test; most are about the moment and are not
+  recorded. One that is recorded gets `source: reversal`.
+
 ## [1.1.0] - 2026-11-11
 
 ### Changed
